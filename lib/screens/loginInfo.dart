@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 final _firebase = FirebaseAuth.instance;
 
-class loginInfo extends StatefulWidget{
-  const InfoScreen({super.key});
+class loginInfo extends StatefulWidget {
+  const loginInfo({super.key});
   //const InfoScreen({Key? key}): super(key: key);
 
   @override
-  State<InfoScreen> createState() => _InfoScreenState();
+  State<loginInfo> createState() => _LogInInfoScreenState();
 }
-class _InfoScreenState extends State<InfoScreen>{
+
+class _LogInInfoScreenState extends State<loginInfo> {
   final _form = GlobalKey<FormState>();
   var _fName = '';
   var _lName = '';
   var _enteredEmail = '';
 
   @override
-  Widget build (BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
       body: Center(
@@ -29,7 +31,7 @@ class _InfoScreenState extends State<InfoScreen>{
                   top: 30,
                   bottom: 20,
                   left: 20,
-                  right:20,
+                  right: 20,
                 ),
                 width: 200,
               ),
@@ -44,51 +46,65 @@ class _InfoScreenState extends State<InfoScreen>{
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           TextFormField(
-                            decoration: const InputDecoration(
-                              labelText: 'First Name'),
+                            decoration:
+                                const InputDecoration(labelText: 'First Name'),
                             keyboardType: TextInputType.name,
                             autocorrect: false,
                             textCapitalization: TextCapitalization.none,
-                            validator: (value){
-                              if(value ==null || value.trim().isEmpty){
+                            validator: (value) {
+                              if (value == null || value.trim().isEmpty) {
                                 return "Please enter a valid First Name";
                               }
                             },
-                            onSaved:(value){
+                            onSaved: (value) {
                               _fName = value!;
                             },
-                            ),
-                            TextFormField(
-                              decoration: 
-                                const InputDecoration(labelText: 'Last NAme'),
+                          ),
+                          TextFormField(
+                              decoration:
+                                  const InputDecoration(labelText: 'Last NAme'),
                               obscureText: false,
-                              validator:(value){
-                                if(value ==null || value.trim().isEmpty){
-                                return "Please enter a valid Last Name";
-                               }
-                              },
-                              onSaved:(value){
-                                _lName = value!;
-                              }
-                            ),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'EmailAddress'),
-                                keyboardType: TextInputType.emailAddress,
-                                autocorrect: false,
-                                textCapitalization: TextCapitalization.none,
-                                validator: (value){
-                                  if (value ==null || value.trim().isEmpty == !value.contains('@')){
-                                    return 'Please enter a valid email address';
-                                  }
-                                },
-                                onSaved: (value){
-                                  _enteredEmail = value!;
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Please enter a valid Last Name";
                                 }
-                              ),
-                              const SizedBox(
-                                height: 12, 
-                              ),
+                              },
+                              onSaved: (value) {
+                                _lName = value!;
+                              }),
+                          TextFormField(
+                              decoration: const InputDecoration(
+                                  labelText: 'EmailAddress'),
+                              keyboardType: TextInputType.emailAddress,
+                              autocorrect: false,
+                              textCapitalization: TextCapitalization.none,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.trim().isEmpty ==
+                                        !value.contains('@')) {
+                                  return 'Please enter a valid email address';
+                                }
+                              },
+                              onSaved: (value) {
+                                _enteredEmail = value!;
+                              }),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
                              /* ElevatedButton(
                                 onPressed: _submit,
                                 style: ElevatedButton.styleFrom(
@@ -99,21 +115,7 @@ class _InfoScreenState extends State<InfoScreen>{
                                 child: Text('Sign Up'),
                               ),
                               */
-                            ),
-                          ).
-                        ],
-                      ),
-                    ),
-                  )
-                )
-              ),
-           // ],
-          ),
-        );
-     // ),
-    //),
-  }
-}
+                            
 /**import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:social_workout_app/screens/authScreen.dart';

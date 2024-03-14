@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:social_workout_app/screens/authScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:social_workout_app/screens/homeScreen.dart';
+import 'package:social_workout_app/screens/loginInfo.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               return const HomeScreen();
             }
-            return const AuthScreen();
+            return const loginInfo();
           }),
     );
   }
