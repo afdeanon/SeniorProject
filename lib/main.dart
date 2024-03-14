@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:social_workout_app/screens/authScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:social_workout_app/screens/homeScreen.dart';
+import 'package:social_workout_app/screens/logInScreen.dart';
+import 'package:social_workout_app/screens/splashScreen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -20,16 +22,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Senior Project',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (ctx, snapshot) {
+            //x if (snapshot.connectionState == ConnectionState.waiting) {
+            //   return const SplashScreen();
+            // }
             if (snapshot.hasData) {
+              print("go to home");
               return const HomeScreen();
+            } else {
+              //Changed type of Screen to edit the login and splash screens
+              return const LogInScreen();
+              //return const SplashScreen();
             }
-            return const AuthScreen();
+            //return const AuthScreen();
           }),
     );
   }
