@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
               return const HomeScreen();
             } else {
               //Changed type of Screen to edit the login and splash screens
-              return const LogInScreen();
-              //return const SplashScreen();
+              //return const LogInScreen();
+              return const SplashScreen();
             }
             //return const AuthScreen();
           }),
