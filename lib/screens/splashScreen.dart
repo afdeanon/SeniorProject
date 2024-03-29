@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:social_workout_app/image.dart';
 import 'package:social_workout_app/screens/authScreen.dart';
+import 'package:social_workout_app/screens/logInScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -68,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: TextButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => AuthScreen()),
+                  MaterialPageRoute(builder: (context) => LogInScreen()),
                 );
               },
               // style: ElevatedButton.styleFrom(

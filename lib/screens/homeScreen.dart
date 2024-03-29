@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_workout_app/screens/authScreen.dart';
+import 'package:social_workout_app/screens/logInScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => AuthScreen()),
+                  MaterialPageRoute(builder: (context) => LogInScreen()),
                 );
               },
               icon: Icon(
