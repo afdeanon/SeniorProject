@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_workout_app/screens/homeScreen.dart';
+import 'package:social_workout_app/screens/signUpGeneralInfo.dart';
 
 final _firebase = FirebaseAuth.instance;
 
@@ -142,7 +143,12 @@ class _LogInScreenState extends State<LogInScreen> {
               padding: const EdgeInsets.fromLTRB(35, 10, 35, 10),
               alignment: Alignment.center,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                        builder: (context) => signUpGeneralInfo()),
+                  );
+                },
                 child: const Text(
                   "Create a new account",
                   style: TextStyle(decoration: TextDecoration.underline),
