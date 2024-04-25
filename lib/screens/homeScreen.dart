@@ -3,8 +3,10 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_workout_app/screens/authScreen.dart';
+import 'package:social_workout_app/screens/rankingScreen.dart';
 import 'package:social_workout_app/screens/logInScreen.dart';
 import 'package:social_workout_app/screens/profileScreen.dart';
+import 'package:social_workout_app/screens/workoutScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, User? user}) : super(key: key);
@@ -16,8 +18,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
+    RankingScreen(),
+    WorkoutScreen(),
     ProfileScreen(),
-    ProfileScreen()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -51,8 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+            icon: Icon(Icons.add_chart),
+            label: "Ranking",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.accessibility),
+            label: "Workout",
           ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           // BottomNavigationBarItem(icon: Icon(Icons.calendar_view_week_outlined))
