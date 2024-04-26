@@ -13,8 +13,22 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: Text("Workout"),
+        child: Column(children: [
+          Container(
+            width: 393,
+            height: 237,
+            decoration: BoxDecoration(color: Color(0xFF558CE0)),
+          ),
+        ]),
       ),
     );
   }
+
+  /**
+   * Container(
+width: 393,
+height: 237,
+decoration: BoxDecoration(color: Color(0xFF558CE0)),
+)
+   */
 }
