@@ -54,7 +54,7 @@ class _ProfileState extends State<Profile> {
                     height: 96,
                     decoration: const ShapeDecoration(
                       image: DecorationImage(
-                        image: AssetImage(SImages.runningImage),
+                        image: AssetImage('assets/images/profileImages/default.png'),
                         fit: BoxFit.fill,
                       ),
                       shape: OvalBorder(),
