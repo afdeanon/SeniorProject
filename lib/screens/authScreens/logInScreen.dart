@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_workout_app/screens/homeScreen.dart';
-import 'package:social_workout_app/screens/signUpGeneralInfo.dart';
+import 'package:social_workout_app/screens/authScreens/signUpGeneralInfo.dart';
 
 final _firebase = FirebaseAuth.instance;
 
