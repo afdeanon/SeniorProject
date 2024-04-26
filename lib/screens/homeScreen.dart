@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_workout_app/screens/authScreens/authScreen.dart';
 import 'package:social_workout_app/screens/rankingScreen.dart';
 import 'package:social_workout_app/screens/authScreens/logInScreen.dart';
-import 'package:social_workout_app/screens/profileScreen.dart';
+import 'package:social_workout_app/screens/profileScreens/profileScreen.dart';
 import 'package:social_workout_app/screens/workoutScreens/workoutScreen.dart';
 
 class HomeScreen extends StatefulWidget {
