@@ -18,7 +18,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             width: 393,
             height: 237,
             decoration: BoxDecoration(color: Color(0xFF558CE0)),
-          ),
+          )
         ]),
       ),
     );
