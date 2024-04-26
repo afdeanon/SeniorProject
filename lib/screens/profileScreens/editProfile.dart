@@ -33,7 +33,7 @@ class _EditProfileState extends State<EditProfile> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Container(
+        SizedBox(
           width: 330,
           height: 554,
           child: Column(
@@ -42,7 +42,7 @@ class _EditProfileState extends State<EditProfile> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 77),
-              Text(
+              const Text(
                 'Edit Profile',
                 style: TextStyle(
                   color: Colors.black,
@@ -63,12 +63,12 @@ class _EditProfileState extends State<EditProfile> {
                       width: 330,
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF2F2F2),
+                        color: const Color(0xFFF2F2F2),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,12 +94,12 @@ class _EditProfileState extends State<EditProfile> {
                       width: 330,
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF2F2F2),
+                        color: const Color(0xFFF2F2F2),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -117,7 +117,7 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 32),
+                          SizedBox(width: 32),
                         ],
                       ),
                     ),
@@ -126,12 +126,12 @@ class _EditProfileState extends State<EditProfile> {
                       width: 330,
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF2F2F2),
+                        color: const Color(0xFFF2F2F2),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -149,7 +149,7 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 32),
+                          SizedBox(width: 32),
                         ],
                       ),
                     ),
@@ -158,12 +158,12 @@ class _EditProfileState extends State<EditProfile> {
                       width: 330,
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                       decoration: ShapeDecoration(
-                        color: Color(0xFFF2F2F2),
+                        color: const Color(0xFFF2F2F2),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -181,7 +181,7 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 32),
+                          SizedBox(width: 32),
                         ],
                       ),
                     ),
