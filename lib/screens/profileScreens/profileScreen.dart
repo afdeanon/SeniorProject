@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:social_workout_app/image.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key, User? user}) : super(key: key);
