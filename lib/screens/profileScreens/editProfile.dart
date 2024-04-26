@@ -59,36 +59,47 @@ class _EditProfileState extends State<EditProfile> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 330,
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-                      decoration: ShapeDecoration(
-                        color: const Color(0xFFF2F2F2),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 240,
-                            child: Text(
-                              'Change Name',
-                              style: TextStyle(
-                                color: Color(0xFF343434),
-                                fontSize: 20,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w400,
-                                height: 0,
-                              ),
-                            ),
-                          ),
-                        ],
+                    InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditProfile()),  // This assumes EditProfile is the name of the widget you want to navigate to.
+                    );
+                  },
+                  child: Container(
+                    width: 330,
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFFF2F2F2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
                       ),
                     ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Text(
+                                'Change Name',
+                                style: TextStyle(
+                                  color: Color(0xFF343434),
+                                  fontSize: 20,
+                                  fontFamily: 'SF Pro',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(Icons.chevron_right, color: Color(0xFF343434)),
+                      ],
+                    ),
+                  ),
+                ),
                     const SizedBox(height: 12),
                     Container(
                       width: 330,
