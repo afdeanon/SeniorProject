@@ -95,14 +95,46 @@ class _WorkoutAddState extends State<WorkoutAdd> {
                           fontWeight: FontWeight.w600,
                           height:0,
                         ),
-                      )
+                      ),
+                      const SizedBox(width:13),
                     ],
-                  )
-                )
+                  ),
+                ),
+                Positioned(
+                  left:0,
+                  top:768,
+                  child: Container(
+                    width:393,
+                    height:84,
+                    decoration:BoxDecoration(color: Colors.white),
+                  ),
+                ),
               ],
             )
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        // onPressed: (){
+        //   showDialog(
+        //     context: context,
+        //     builder: (context){
+        //       return 
+        //     }
+        //   )
+        // }
+        onPressed: (){
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Button Pressed"),
+              duration: Duration(minutes: 1),
+              )
+          );
+        },
+        splashColor: Colors.blue,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+        backgroundColor: Colors.blueAccent,
+        child: const Icon(Icons.add,size:50),
       ),
     );
   }
