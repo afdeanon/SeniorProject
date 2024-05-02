@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_chart),
+            icon: Icon(Icons.bar_chart_outlined),
             label: "Ranking",
           ),
           BottomNavigationBarItem(
