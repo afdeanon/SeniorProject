@@ -6,7 +6,7 @@ import 'package:social_workout_app/screens/authScreens/authScreen.dart';
 import 'package:social_workout_app/screens/rankingScreen.dart';
 import 'package:social_workout_app/screens/authScreens/logInScreen.dart';
 import 'package:social_workout_app/screens/profileScreen.dart';
-import 'package:social_workout_app/screens/workoutScreens/workoutScreen.dart';
+import 'package:social_workout_app/screens/workoutScreens/workout/workoutScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, User? user}) : super(key: key);
