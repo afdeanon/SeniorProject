@@ -15,7 +15,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          Profile(),
+          const Profile(),
         ],
       ),
     );
@@ -100,7 +100,7 @@ class _ProfileState extends State<Profile> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => EditProfileScreen()),
+                      MaterialPageRoute(builder: (context) => const EditProfileScreen()),
                     );
                   },
                   child: Container(
@@ -144,7 +144,7 @@ class _ProfileState extends State<Profile> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => EditProfile()),  // This assumes EditProfile is the name of the widget you want to navigate to.
+                      MaterialPageRoute(builder: (context) => const EditProfile()),  // This assumes EditProfile is the name of the widget you want to navigate to.
                     );
                   },
                   child: Container(
@@ -195,7 +195,7 @@ class _ProfileState extends State<Profile> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => EditProfile()),  // This assumes EditProfile is the name of the widget you want to navigate to.
+                      MaterialPageRoute(builder: (context) => const EditProfile()),  // This assumes EditProfile is the name of the widget you want to navigate to.
                     );
                   },
                   child: Container(

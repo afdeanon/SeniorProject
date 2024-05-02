@@ -44,7 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.accessibility),
             label: "Workout",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile"
+          ),
           // BottomNavigationBarItem(icon: Icon(Icons.calendar_view_week_outlined))
         ],
         currentIndex: _selectedIndex,
@@ -53,28 +56,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-/**
- *  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => LogInScreen()),
-                );
-              },
-              icon: Icon(
-                Icons.exit_to_app,
-                color: Theme.of(context).colorScheme.primary,
-              )),
-        ],
-      ),
-      body: const Center(),
-    );
-  }
- */

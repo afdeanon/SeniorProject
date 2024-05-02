@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'editProfile.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key? key, User? user}) : super(key: key);
@@ -15,9 +14,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          EditProfile(),
+          const EditProfile(),
         ],
       ),
+      
     );
   }
 }
@@ -35,8 +35,18 @@ class _EditProfileState extends State<EditProfile> {
     return Container(
       child: Column(
         children: [
-          const SizedBox(height: 80),
-
+          const SizedBox(height: 120),
+          const SizedBox(
+            width: 330,  // 텍스트 박스의 너비 지정
+            child: Text(
+              "Edit Profile",
+              style: TextStyle(
+                fontSize: 36,  // 글자 크기
+                fontWeight: FontWeight.bold,  // 글자 두께
+              ),
+              textAlign: TextAlign.left,  // 텍스트를 좌측으로 정렬
+            ),
+          ),
           const SizedBox(height: 60),
           SizedBox(
             child: Column(
