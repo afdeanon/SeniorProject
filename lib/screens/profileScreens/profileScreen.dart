@@ -40,18 +40,19 @@ class _ProfileState extends State<Profile> {
     return Container(
       child: Column(
         children: [
-          const SizedBox(height: 60),
+          const SizedBox(height: 80),
+
           SizedBox(
-            width: 259,
-            height: 96,
+            width: 300,
+            height: 110,
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  width: 96,
-                  height: 96,
+                  width: 110,
+                  height: 110,
                   decoration: const ShapeDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/profileImages/default.png'),
@@ -60,7 +61,7 @@ class _ProfileState extends State<Profile> {
                     shape: OvalBorder(),
                   ),
                 ),
-                const SizedBox(width: 32),
+                const SizedBox(width: 24),
                 const Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -130,7 +131,7 @@ class _ProfileState extends State<Profile> {
                                   color: Color(0xFF343434),
                                   fontSize: 20,
                                   fontFamily: 'SF Pro',
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
@@ -174,7 +175,7 @@ class _ProfileState extends State<Profile> {
                                   color: Color(0xFF343434),
                                   fontSize: 20,
                                   fontFamily: 'SF Pro',
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
@@ -225,7 +226,7 @@ class _ProfileState extends State<Profile> {
                                   color: Color.fromARGB(255, 255, 0, 0),
                                   fontSize: 20,
                                   fontFamily: 'SF Pro',
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
