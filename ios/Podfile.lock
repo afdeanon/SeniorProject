@@ -1,25 +1,25 @@
 PODS:
-  - Firebase/Auth (10.24.0):
+  - Firebase/Auth (10.20.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 10.24.0)
-  - Firebase/CoreOnly (10.24.0):
-    - FirebaseCore (= 10.24.0)
-  - firebase_auth (4.19.4):
-    - Firebase/Auth (= 10.24.0)
+    - FirebaseAuth (~> 10.20.0)
+  - Firebase/CoreOnly (10.20.0):
+    - FirebaseCore (= 10.20.0)
+  - firebase_auth (4.17.6):
+    - Firebase/Auth (= 10.20.0)
     - firebase_core
     - Flutter
-  - firebase_core (2.30.1):
-    - Firebase/CoreOnly (= 10.24.0)
+  - firebase_core (2.25.5):
+    - Firebase/CoreOnly (= 10.20.0)
     - Flutter
   - FirebaseAppCheckInterop (10.25.0)
-  - FirebaseAuth (10.24.0):
+  - FirebaseAuth (10.20.0):
     - FirebaseAppCheckInterop (~> 10.17)
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseCore (10.24.0):
+  - FirebaseCore (10.20.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
@@ -78,12 +78,12 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  Firebase: 91fefd38712feb9186ea8996af6cbdef41473442
-  firebase_auth: b782567cafd5cfd64debf54638a9f29b63abd7bf
-  firebase_core: 7f1e1156934d0da3be260174812842df9420e4ab
+  Firebase: 10c8cb12fb7ad2ae0c09ffc86cd9c1ab392a0031
+  firebase_auth: b237f065b2afc6bd7962124e1cbacdbef31036e6
+  firebase_core: c8628c7ce80f79439149549052bff22f6784fbf5
   FirebaseAppCheckInterop: 5da5ce93e8797a215e3f677fb0654b74e736c8b8
-  FirebaseAuth: 711d01cccefaf10035b3090a92956d0dd4f99088
-  FirebaseCore: 11dc8a16dfb7c5e3c3f45ba0e191a33ac4f50894
+  FirebaseAuth: 9c5c400d2c3055d8ae3a0284944c86fa95d48dac
+  FirebaseCore: 28045c1560a2600d284b9c45a904fe322dc890b6
   FirebaseCoreInternal: 910a81992c33715fec9263ca7381d59ab3a750b7
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   GoogleUtilities: c56430aef51a1aa57b25da78c3f8397e522c67b7
@@ -91,6 +91,6 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
-PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+PODFILE CHECKSUM: 35ab6dbc143aa836835dc2d40ede947ad4709c22
 
 COCOAPODS: 1.15.2
