@@ -7,7 +7,6 @@ import 'package:social_workout_app/screens/rankingScreen.dart';
 import 'package:social_workout_app/screens/authScreens/logInScreen.dart';
 import 'package:social_workout_app/screens/profileScreens/profileScreen.dart';
 import 'package:social_workout_app/screens/workoutScreens/workoutScreen.dart';
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, User? user}) : super(key: key);
 
@@ -17,22 +16,31 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  List<Widget> get _widgetOptions => [
     RankingScreen(),
     WorkoutScreen(),
     ProfileScreen(),
   ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    navigatorKey.currentState?.popUntil((route) => route.isFirst);  // Pop to the first screen in the stack
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Navigator(
+        key: navigatorKey,
+        onGenerateRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (context) => _widgetOptions.elementAt(_selectedIndex),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -46,9 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: "Profile"
+            label: "Profile",
           ),
-          // BottomNavigationBarItem(icon: Icon(Icons.calendar_view_week_outlined))
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
