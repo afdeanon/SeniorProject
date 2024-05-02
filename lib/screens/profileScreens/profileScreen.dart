@@ -40,7 +40,7 @@ class _ProfileState extends State<Profile> {
     return Container(
       child: Column(
         children: [
-          const SizedBox(height: 30),
+          const SizedBox(height: 60),
           SizedBox(
             width: 259,
             height: 96,
@@ -141,150 +141,108 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                 ),
-              const SizedBox(height: 12),
-              Container(
-                width: 330,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-                decoration: ShapeDecoration(
-                  color: const Color(0xFFF2F2F2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Text(
-                            'My Workouts',
-                            style: TextStyle(
-                              color: Color(0xFF343434),
-                              fontSize: 20,
-                              fontFamily: 'SF Pro',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(Icons.chevron_right, color: Color(0xFF343434)),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-              Container(
-                width: 330,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-                decoration: ShapeDecoration(
-                  color: const Color(0xFFF2F2F2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Text(
-                            'Manage Friends',
-                            style: TextStyle(
-                              color: Color(0xFF343434),
-                              fontSize: 20,
-                              fontFamily: 'SF Pro',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(Icons.chevron_right, color: Color(0xFF343434)),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-              Container(
-                width: 330,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-                decoration: ShapeDecoration(
-                  color: const Color(0xFFF2F2F2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Text(
-                            'About',
-                            style: TextStyle(
-                              color: Color(0xFF343434),
-                              fontSize: 20,
-                              fontFamily: 'SF Pro',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(Icons.chevron_right, color: Color(0xFF343434)),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-              Container(
-                width: 330,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-                decoration: ShapeDecoration(
-                  color: const Color(0xFFF2F2F2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Text(
-                            'Settings',
-                            style: TextStyle(
-                              color: Color(0xFF343434),
-                              fontSize: 20,
-                              fontFamily: 'SF Pro',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(Icons.chevron_right, color: Color(0xFF343434)),
-                  ],
-                ),
-              ),
-              // Continue with the remaining containers
-            ],
-          ),
-        )
+                
+                const SizedBox(height: 12),
 
-      ],
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditProfile()),  // This assumes EditProfile is the name of the widget you want to navigate to.
+                    );
+                  },
+                  child: Container(
+                    width: 330,
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFFF2F2F2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Text(
+                                'Manage Friends',
+                                style: TextStyle(
+                                  color: Color(0xFF343434),
+                                  fontSize: 20,
+                                  fontFamily: 'SF Pro',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(Icons.chevron_right, color: Color(0xFF343434)),
+                      ],
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+                
+                Container(
+                  width: 330,
+                  height: 1,
+                  decoration: const BoxDecoration(color: Color(0xFFD4D4D4)),
+                ),
+
+                const SizedBox(height: 12),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditProfile()),  // This assumes EditProfile is the name of the widget you want to navigate to.
+                    );
+                  },
+                  child: Container(
+                    width: 330,
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFFF2F2F2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Text(
+                                'Log Out',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 255, 0, 0),
+                                  fontSize: 20,
+                                  fontFamily: 'SF Pro',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Icon(Icons.chevron_right, color: Color(0xFF343434)),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+
+              ],
+            ),
+          )
+        ],
       ),
-      
     );
   }
 }
