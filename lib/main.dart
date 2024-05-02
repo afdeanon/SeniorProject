@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Senior Project',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
             } else {
               //Changed type of Screen to edit the login and splash screens
               //return const LogInScreen();
-              return const SplashScreen();
+              return const HomeScreen();
             }
           }),
     );
