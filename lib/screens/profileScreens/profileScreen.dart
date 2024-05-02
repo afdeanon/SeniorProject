@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'editProfile.dart';
@@ -14,21 +12,18 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0x00ffffff),
-      ),
-      home: Scaffold(
-        body: ListView(children: const [
+    return Scaffold(
+      body: ListView(
+        children: [
           Profile(),
-        ]),
+        ],
       ),
     );
   }
 }
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  const Profile({Key? key}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -43,7 +38,7 @@ class _ProfileState extends State<Profile> {
           const SizedBox(height: 80),
 
           SizedBox(
-            width: 300,
+            width: 270,
             height: 110,
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -105,7 +100,7 @@ class _ProfileState extends State<Profile> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => EditProfile()),  // This assumes EditProfile is the name of the widget you want to navigate to.
+                      MaterialPageRoute(builder: (context) => EditProfileScreen()),
                     );
                   },
                   child: Container(
