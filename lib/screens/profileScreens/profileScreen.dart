@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:social_workout_app/screens/authScreens/signUpScreen.dart';
+import 'package:social_workout_app/screens/splashScreen.dart';
 import 'editProfile.dart';
 import 'manageFriends.dart';
 
@@ -32,12 +34,24 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  void _logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => SplashScreen()),
+      );
+    } catch (e) {
+      print('Error logging out: $e');
+      // Handle error logging out
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 80),
-    
         SizedBox(
           width: 270,
           height: 110,
@@ -51,7 +65,8 @@ class _ProfileState extends State<Profile> {
                 height: 110,
                 decoration: const ShapeDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/profileImages/default.png'),
+                    image:
+                        AssetImage('assets/images/profileImages/default.png'),
                     fit: BoxFit.fill,
                   ),
                   shape: OvalBorder(),
@@ -68,20 +83,22 @@ class _ProfileState extends State<Profile> {
                       'Joseph',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 32,  // Reduced font size for better fitting
+                        fontSize: 32, // Reduced font size for better fitting
                         fontFamily: 'SF Pro',
                         fontWeight: FontWeight.w500,
-                        height: 1.2,  // Proper line height to prevent clipping and improve readability
+                        height:
+                            1.2, // Proper line height to prevent clipping and improve readability
                       ),
                     ),
                     Text(
                       'Clark',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 24,  // Reduced font size for better fitting
+                        fontSize: 24, // Reduced font size for better fitting
                         fontFamily: 'SF Pro',
                         fontWeight: FontWeight.w500,
-                        height: 1.2,  // Proper line height to prevent clipping and improve readability
+                        height:
+                            1.2, // Proper line height to prevent clipping and improve readability
                       ),
                     ),
                   ],
@@ -101,12 +118,14 @@ class _ProfileState extends State<Profile> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const EditProfileScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const EditProfileScreen()),
                   );
                 },
                 child: Container(
                   width: 330,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                   decoration: ShapeDecoration(
                     color: const Color(0xFFF2F2F2),
                     shape: RoundedRectangleBorder(
@@ -138,19 +157,20 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-              
               const SizedBox(height: 12),
-    
               InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ManageFriendsScreen()),  // This assumes EditProfile is the name of the widget you want to navigate to.
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const ManageFriendsScreen()), // This assumes EditProfile is the name of the widget you want to navigate to.
                   );
                 },
                 child: Container(
                   width: 330,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                   decoration: ShapeDecoration(
                     color: const Color(0xFFF2F2F2),
                     shape: RoundedRectangleBorder(
@@ -182,26 +202,21 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-    
               const SizedBox(height: 12),
-              
               Container(
                 width: 330,
                 height: 1,
                 decoration: const BoxDecoration(color: Color(0xFFD4D4D4)),
               ),
-    
               const SizedBox(height: 12),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const EditProfile()),  // This assumes EditProfile is the name of the widget you want to navigate to.
-                  );
+                  _logout();
                 },
                 child: Container(
                   width: 330,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                   decoration: ShapeDecoration(
                     color: const Color(0xFFF2F2F2),
                     shape: RoundedRectangleBorder(
@@ -234,7 +249,6 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               const SizedBox(height: 12),
-    
             ],
           ),
         )
