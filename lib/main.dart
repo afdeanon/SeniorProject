@@ -2,17 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_workout_app/screens/authScreens/authScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:social_workout_app/screens/authScreens/signUpScreen.dart';
 import 'package:social_workout_app/screens/homeScreen.dart';
 import 'package:social_workout_app/screens/authScreens/logInScreen.dart';
-import 'package:social_workout_app/screens/authScreens/signUpBodyInfo.dart';
-import 'package:social_workout_app/screens/authScreens/signUpGeneralInfo.dart';
-import 'package:social_workout_app/screens/authScreens/signUpLoginInfo.dart';
+
 import 'package:social_workout_app/screens/splashScreen.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
             // }
             if (snapshot.hasData) {
               print("go to home");
-              return const HomeScreen();
+              return const SignUpScreen();
             } else {
               //Changed type of Screen to edit the login and splash screens
               //return const LogInScreen();

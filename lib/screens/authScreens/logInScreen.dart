@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:social_workout_app/screens/authScreens/signUpScreen.dart';
 import 'package:social_workout_app/screens/homeScreen.dart';
 import 'package:social_workout_app/screens/authScreens/signUpGeneralInfo.dart';
 
@@ -75,6 +76,7 @@ class _LogInScreenState extends State<LogInScreen> {
               child: const Text(
                 "Sign in",
                 style: TextStyle(
+                  color: Color(0xFF558CE0),
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
@@ -145,8 +147,7 @@ class _LogInScreenState extends State<LogInScreen> {
               child: TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                        builder: (context) => signUpGeneralInfo()),
+                    MaterialPageRoute(builder: (context) => SignUpScreen()),
                   );
                 },
                 child: const Text(
