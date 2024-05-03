@@ -144,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   onPressed: _submit,
                   child: const Text(
-                    "Sign In",
+                    "Sign Up",
                   ),
                 )),
             Container(
