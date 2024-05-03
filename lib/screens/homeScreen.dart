@@ -5,8 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_workout_app/screens/authScreens/authScreen.dart';
 import 'package:social_workout_app/screens/rankingScreen.dart';
 import 'package:social_workout_app/screens/authScreens/logInScreen.dart';
-import 'package:social_workout_app/screens/profileScreen.dart';
-import 'package:social_workout_app/screens/workoutScreens/workoutScreen.dart';
+import 'package:social_workout_app/screens/profileScreens/profileScreen.dart';
+import 'package:social_workout_app/screens/workoutScreens/workout/workoutScreen.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, User? user}) : super(key: key);
@@ -17,52 +18,46 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  List<Widget> get _widgetOptions => [
     RankingScreen(),
     WorkoutScreen(),
     ProfileScreen(),
   ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    navigatorKey.currentState?.popUntil((route) => route.isFirst);  // Pop to the first screen in the stack
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => LogInScreen()),
-                );
-              },
-              icon: Icon(
-                Icons.exit_to_app,
-                color: Theme.of(context).colorScheme.primary,
-              )),
-        ],
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Navigator(
+        key: navigatorKey,
+        onGenerateRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (context) => _widgetOptions.elementAt(_selectedIndex),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_chart),
+            icon: Icon(Icons.bar_chart_outlined),
             label: "Ranking",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.accessibility),
             label: "Workout",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-          // BottomNavigationBarItem(icon: Icon(Icons.calendar_view_week_outlined))
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile",
+          ),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -70,28 +65,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-/**
- *  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => LogInScreen()),
-                );
-              },
-              icon: Icon(
-                Icons.exit_to_app,
-                color: Theme.of(context).colorScheme.primary,
-              )),
-        ],
-      ),
-      body: const Center(),
-    );
-  }
- */
