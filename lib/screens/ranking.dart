@@ -2,15 +2,17 @@
 
 import 'package:flutter/material.dart';
 
-class User {
+class User extends StatefulWidget {
   final String name;
   final int score;
-  final List<String> options = ['Month', 'Week', 'Day'];
-  String? selectedOption;
-  User({required this.name, required this.score});
+
+  const User({Key? key, required this.name, required this.score}) : super(key: key);
+
+  @override
+  _UserState createState() => _UserState();
 }
 
-class UserPage extends StatelessWidget {
+class _UserState extends State<User> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -179,4 +181,3 @@ class UserPage extends StatelessWidget {
     );
   }
 }
-
