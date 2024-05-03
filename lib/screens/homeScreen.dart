@@ -16,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   List<Widget> get _widgetOptions => [
         RankingScreen(),
@@ -28,20 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
-    navigatorKey.currentState?.popUntil(
-        (route) => route.isFirst); // Pop to the first screen in the stack
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Navigator(
-        key: navigatorKey,
-        onGenerateRoute: (settings) {
-          return MaterialPageRoute(
-            builder: (context) => _widgetOptions.elementAt(_selectedIndex),
-          );
-        },
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
