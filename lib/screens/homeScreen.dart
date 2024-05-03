@@ -2,12 +2,10 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:social_workout_app/screens/authScreens/authScreen.dart';
 import 'package:social_workout_app/screens/rankingScreen.dart';
 import 'package:social_workout_app/screens/authScreens/logInScreen.dart';
 import 'package:social_workout_app/screens/profileScreens/profileScreen.dart';
 import 'package:social_workout_app/screens/workoutScreens/workout/workoutScreen.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, User? user}) : super(key: key);
@@ -18,31 +16,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   List<Widget> get _widgetOptions => [
-    RankingScreen(),
-    WorkoutScreen(),
-    ProfileScreen(),
-  ];
+        RankingScreen(),
+        WorkoutScreen(),
+        ProfileScreen(),
+      ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    navigatorKey.currentState?.popUntil((route) => route.isFirst);  // Pop to the first screen in the stack
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Navigator(
-        key: navigatorKey,
-        onGenerateRoute: (settings) {
-          return MaterialPageRoute(
-            builder: (context) => _widgetOptions.elementAt(_selectedIndex),
-          );
-        },
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

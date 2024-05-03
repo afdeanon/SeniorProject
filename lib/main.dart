@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:social_workout_app/screens/authScreens/authScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:social_workout_app/screens/authScreens/signUpScreen.dart';
 import 'package:social_workout_app/screens/homeScreen.dart';
@@ -36,11 +35,11 @@ class MyApp extends StatelessWidget {
             // }
             if (snapshot.hasData) {
               print("go to home");
-              return const SignUpScreen();
+              return const HomeScreen();
             } else {
               //Changed type of Screen to edit the login and splash screens
               //return const LogInScreen();
-              return const HomeScreen();
+              return const SplashScreen();
             }
           }),
     );
