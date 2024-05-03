@@ -36,11 +36,11 @@ class MyApp extends StatelessWidget {
             // }
             if (snapshot.hasData) {
               print("go to home");
-              return const SignUpScreen();
+              return const HomeScreen();
             } else {
               //Changed type of Screen to edit the login and splash screens
               //return const LogInScreen();
-              return const HomeScreen();
+              return const SplashScreen();
             }
           }),
     );
