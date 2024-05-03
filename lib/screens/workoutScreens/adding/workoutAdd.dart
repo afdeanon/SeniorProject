@@ -115,7 +115,7 @@ class _WorkoutAddState extends State<WorkoutAdd> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        // onPressed: (){ IM GONNA TRY AND FIGURE THIS OUT IN A BIT
+        // onPressed: (){
         //   showDialog(
         //     context: context,
         //     builder: (context){
