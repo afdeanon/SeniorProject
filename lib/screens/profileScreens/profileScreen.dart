@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:social_workout_app/screens/authScreens/logInScreen.dart';
 import 'package:social_workout_app/screens/authScreens/signUpScreen.dart';
 import 'package:social_workout_app/screens/splashScreen.dart';
 import 'editProfile.dart';
@@ -37,9 +38,8 @@ class _ProfileState extends State<Profile> {
   void _logout() async {
     try {
       await FirebaseAuth.instance.signOut();
-      // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => SplashScreen()),
+        MaterialPageRoute(builder: (context) => const SplashScreen()),
       );
     } catch (e) {
       print('Error logging out: $e');
@@ -49,6 +49,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    print("profileScreen");
     return Column(
       children: [
         const SizedBox(height: 80),

@@ -24,25 +24,41 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Senior Project',
+      routes:{
+        '/login' : (context) => const LogInScreen(),
+        '/signup' : (context) => const SignUpScreen(),
+        '/home' : (context) => const HomeScreen(),
+        '/auth' : (context) => const AuthScreen(),
+        '/splash' : (context) => const SplashScreen(),
+        '/profile' : (context) => const HomeScreen(),
+        '/workout' : (context) => const HomeScreen(),
+        '/ranking' : (context) => const HomeScreen(),
+        '/editProfile' : (context) => const HomeScreen(),
+        '/manageFriends' : (context) => const HomeScreen(),
+        '/workoutScreen' : (context) => const HomeScreen(),
+        '/workoutDetails' : (context) => const HomeScreen(),
+        '/workoutHistory' : (context) => const HomeScreen(),
+        '/workoutHistoryDetails' : (context) => const HomeScreen(),
+      },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (ctx, snapshot) {
-            //x if (snapshot.connectionState == ConnectionState.waiting) {
-            //   return const SplashScreen();
-            // }
-            if (snapshot.hasData) {
-              print("go to home");
-              return const SignUpScreen();
-            } else {
-              //Changed type of Screen to edit the login and splash screens
-              //return const LogInScreen();
-              return const HomeScreen();
-            }
-          }),
+      home: const SplashScreen(),
+      // home: StreamBuilder(
+      //     stream: FirebaseAuth.instance.authStateChanges(),
+      //     builder: (ctx, snapshot) {
+      //       //x if (snapshot.connectionState == ConnectionState.waiting) {
+      //       //   return const SplashScreen();
+      //       // }
+      //       if (snapshot.hasData) {
+      //         return const HomeScreen();
+      //       } else {
+      //         //Changed type of Screen to edit the login and splash screens
+      //         //return const LogInScreen();
+      //         return const SplashScreen();
+      //       }
+      //     }),
     );
   }
 }
