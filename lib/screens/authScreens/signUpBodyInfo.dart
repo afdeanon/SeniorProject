@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_workout_app/screens/homeScreen.dart';
@@ -86,6 +88,7 @@ class _signUpBodyInfoState extends State<signUpBodyInfo> {
                 textAlign: TextAlign.left,
               ),
             ),
+            // ignore: sized_box_for_whitespace
             Container(
               width: 226,
               height: 20,
