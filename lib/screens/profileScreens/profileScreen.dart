@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_workout_app/screens/authScreens/signUpScreen.dart';
 import 'package:social_workout_app/screens/profileScreens/editProfileScreen.dart';
 import 'package:social_workout_app/screens/splashScreen.dart';
-import 'editProfile.dart';
 import 'manageFriends.dart';
 
 class ProfileScreen extends StatefulWidget {
