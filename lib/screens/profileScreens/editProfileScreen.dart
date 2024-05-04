@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_workout_app/components/changeNameModal.dart';
+import 'package:social_workout_app/components/changePasswordModal.dart';
 
 class EditProfile1 extends StatefulWidget {
   const EditProfile1({Key? key, User? user}) : super(key: key);
@@ -95,10 +96,12 @@ class _EditProfile1ScreenState extends State<EditProfile1> {
                 const SizedBox(height: 12),
                 InkWell(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => const EditProfileScreen()),
-                    // );
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ChangePasswordModal();
+                      },
+                    );
                   },
                   child: Container(
                     width: 330,
