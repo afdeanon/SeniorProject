@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_workout_app/screens/authScreens/signUpScreen.dart';
@@ -39,10 +40,12 @@ class _ProfileState extends State<Profile> {
       await FirebaseAuth.instance.signOut();
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => SplashScreen()),
+        MaterialPageRoute(builder: (context) => const SplashScreen()),
       );
     } catch (e) {
-      print('Error logging out: $e');
+      if (kDebugMode) {
+        print('Error logging out: $e');
+      }
       // Handle error logging out
     }
   }
@@ -117,7 +120,7 @@ class _ProfileState extends State<Profile> {
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => EditProfile1()),
+                    MaterialPageRoute(builder: (context) => const EditProfile1()),
                   );
                 },
                 child: Container(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ChangePasswordModal extends StatelessWidget {
+  const ChangePasswordModal({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -25,7 +27,7 @@ class ChangePasswordModal extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            Container(
+            SizedBox(
               width: 271,
               height: 200,
               child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:social_workout_app/components/changeHeightModal.dart';
 import 'package:social_workout_app/components/changeNameModal.dart';
 import 'package:social_workout_app/components/changePasswordModal.dart';
 
@@ -99,7 +100,7 @@ class _EditProfile1ScreenState extends State<EditProfile1> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return ChangePasswordModal();
+                        return const ChangePasswordModal();
                       },
                     );
                   },
@@ -141,10 +142,12 @@ class _EditProfile1ScreenState extends State<EditProfile1> {
                 const SizedBox(height: 12),
                 InkWell(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => const EditProfileScreen()),
-                    // );
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const ChangeHeightModal();
+                      },
+                    );
                   },
                   child: Container(
                     width: 330,
