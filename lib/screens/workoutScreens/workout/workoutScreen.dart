@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:social_workout_app/screens/workoutScreens/adding/addRoutine.dart';
 import 'package:social_workout_app/screens/workoutScreens/workout/horizontalDayListState.dart';
 import 'package:social_workout_app/screens/workoutScreens/workout/routineGridView.dart';
 
@@ -62,7 +63,13 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             ),
           ]),
         ),
-        ElevatedButton(onPressed: () {}, child: Text("Create a new routne"))
+        ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => AddRoutineScreen()),
+              );
+            },
+            child: Text("Create a new routne"))
       ]),
     );
   }
