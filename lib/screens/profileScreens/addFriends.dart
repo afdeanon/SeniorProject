@@ -48,7 +48,7 @@ class _AddFriendsState extends State<AddFriends> {
         const SizedBox(
           width: 330,
           child: Text(
-            "Manage Friends",
+            "Add Friends",
             style: TextStyle(
               fontSize: 36,
               fontWeight: FontWeight.bold,
