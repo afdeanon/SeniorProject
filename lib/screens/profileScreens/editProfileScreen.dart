@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:social_workout_app/components/changeNameModal.dart';
 
 class EditProfile1 extends StatefulWidget {
   const EditProfile1({Key? key, User? user}) : super(key: key);
@@ -9,19 +10,20 @@ class EditProfile1 extends StatefulWidget {
 }
 
 class _EditProfile1ScreenState extends State<EditProfile1> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.fromLTRB(18, 30, 10, 30),
+      padding: const EdgeInsets.fromLTRB(18, 30, 10, 30),
       child: Column(
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
             alignment: Alignment.topLeft,
             child: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -48,10 +50,12 @@ class _EditProfile1ScreenState extends State<EditProfile1> {
               children: [
                 InkWell(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => const EditProfileScreen()),
-                    // );
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ChangeNameModal();
+                      },
+                    );
                   },
                   child: Container(
                     width: 330,

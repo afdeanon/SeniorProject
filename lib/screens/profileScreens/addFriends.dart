@@ -79,7 +79,7 @@ class _AddFriendsState extends State<AddFriends> {
                     isDense: true, // Makes the TextField compact
                     contentPadding: EdgeInsets.zero, // Adjust internal padding
                     border: InputBorder.none,
-                    hintText: 'Enter the user ID',
+                    hintText: 'Enter the username',
                     hintStyle: TextStyle(
                       color: Color(0xFF777777),
                       fontSize: 12,
