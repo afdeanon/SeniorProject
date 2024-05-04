@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class ManageFriendsScreen extends StatefulWidget {
-  const ManageFriendsScreen({Key? key, User? user}) : super(key: key);
+class AddFriendsScreen extends StatefulWidget {
+  const AddFriendsScreen({Key? key, User? user}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _ManageFriendsScreenState createState() => _ManageFriendsScreenState();
+  _AddFriendsScreenState createState() => _AddFriendsScreenState();
 }
 
-class _ManageFriendsScreenState extends State<ManageFriendsScreen> {
+class _AddFriendsScreenState extends State<AddFriendsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: const [
-          ManageFriends(),
+          AddFriends(),
         ],
       ),
     );
   }
 }
 
-class ManageFriends extends StatefulWidget {
-  const ManageFriends({Key? key}) : super(key: key);
+class AddFriends extends StatefulWidget {
+  const AddFriends({Key? key}) : super(key: key);
 
   @override
-  _ManageFriendsState createState() => _ManageFriendsState();
+  _AddFriendsState createState() => _AddFriendsState();
 }
 
-class _ManageFriendsState extends State<ManageFriends> {
+class _AddFriendsState extends State<AddFriends> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -58,55 +58,49 @@ class _ManageFriendsState extends State<ManageFriends> {
         ),
         const SizedBox(height: 60),
 
+
         Container(
-          width: 330,
-          height: 80,
-          padding: const EdgeInsets.all(20),
+          width: 332,
+          height: 34,
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           decoration: ShapeDecoration(
-            color: Colors.white,
+            color: const Color(0xFFF2F2F2),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
             ),
-            shadows: const [
-              BoxShadow(
-                color: Color(0x3F000000),
-                blurRadius: 10,
-                offset: Offset(3, 3),
-                spreadRadius: 0,
-              )
-            ],
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          child: const Row( // Use Row to hold multiple widgets horizontally
             children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: const ShapeDecoration(
-                  image: DecorationImage(
-                    // user image comes here
-                    image: NetworkImage("https://via.placeholder.com/40x40"),
-                    fit: BoxFit.fill,
+              Icon(Icons.search, color: Color(0xFF777777)),
+              SizedBox(width: 10), // Space before the TextField
+              Expanded( // Use Expanded to make the TextField take the remaining space
+                child: TextField(
+                  decoration: InputDecoration(
+                    isDense: true, // Makes the TextField compact
+                    contentPadding: EdgeInsets.zero, // Adjust internal padding
+                    border: InputBorder.none,
+                    hintText: 'Enter the user ID',
+                    hintStyle: TextStyle(
+                      color: Color(0xFF777777),
+                      fontSize: 12,
+                      fontFamily: 'SF Pro',
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                  shape: OvalBorder(),
-                ),
-              ),
-              const SizedBox(width: 16),
-              const Text(
-                'Kevin David',
-                style: TextStyle(
-                  color: Color(0xFF343434),
-                  fontSize: 18,
-                  fontFamily: 'SF Pro',
-                  fontWeight: FontWeight.w500,
-                  height: 0,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontFamily: 'SF Pro',
+                  ),
+                  cursorColor: Colors.black,
                 ),
               ),
             ],
           ),
         ),
+
+
+        const SizedBox(height: 40),
 
         SizedBox(
           child: Column(
