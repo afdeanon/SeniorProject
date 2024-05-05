@@ -1,11 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:social_workout_app/fire_auth.dart';
 import 'package:social_workout_app/screens/authScreens/logInScreen.dart';
-import 'package:social_workout_app/screens/authScreens/signUpScreen.dart';
 import 'package:social_workout_app/screens/homeScreen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final _firebase = FirebaseAuth.instance;
+final db = FirebaseFirestore.instance;
 final _passwordController = TextEditingController();
+final usersDatabase = db.collection("users");
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -18,6 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   var _enteredEmail = '';
   var _password = '';
   var _confirmPassword = '';
+  var _enteredName = '';
 
   final _isLogin = true;
   void _submit() async {
@@ -35,12 +40,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return;
     }
     try {
-      final userCredentials = await _firebase.createUserWithEmailAndPassword(
-          email: _enteredEmail, password: _password);
-      print(userCredentials);
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+      User? user = await FireAuth.registerUsingEmailPassword(
+          email: _enteredEmail, password: _password, name: _enteredName);
+      print(user);
+      if (user != null) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+        );
+      }
+      usersDatabase.doc(user!.uid).set(
+          {"Routines": [], "Friends": [], "Reps": [], "Lbs": [], "Sets": []});
     } on FirebaseAuthException catch (error) {
       print(error.toString());
 
@@ -48,6 +59,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         //...
       }
     }
+  }
+
+  Future<DocumentSnapshot> _getUser(String id) {
+    return usersDatabase.doc(_firebase.currentUser!.uid).get();
   }
 
   @override
@@ -74,6 +89,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.left,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(35, 10, 35, 10),
+              // margin: const EdgeInsets.symmetric(vertical: 10),
+              alignment: Alignment.centerLeft,
+              child: TextFormField(
+                decoration:
+                    const InputDecoration(labelText: 'First and Last Name'),
+                keyboardType: TextInputType.name,
+                autocorrect: false,
+                textCapitalization: TextCapitalization.words,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Please enter a name';
+                  }
+                },
+                onSaved: (value) {
+                  _enteredName = value!;
+                },
               ),
             ),
             Container(

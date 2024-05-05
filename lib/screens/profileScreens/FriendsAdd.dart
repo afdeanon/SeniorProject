@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AddWorkoutScreen extends StatefulWidget {
-  const AddWorkoutScreen({Key? key, User? user}) : super(key: key);
+class FriendsAddScreen extends StatefulWidget {
+  const FriendsAddScreen({Key? key, User? user}) : super(key: key);
 
   @override
-  _AddWorkoutScreenState createState() => _AddWorkoutScreenState();
+  _FriendsAddScreenState createState() => _FriendsAddScreenState();
 }
 
 String searchName = "";
@@ -19,7 +19,7 @@ Future<DocumentSnapshot> _getUser(String id) {
 
 Future<DocumentSnapshot> doc_id = _getUser(auth.currentUser!.uid);
 
-class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
+class _FriendsAddScreenState extends State<FriendsAddScreen> {
   final _form = GlobalKey<FormState>();
 
   @override
@@ -41,7 +41,7 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
         ),
       )),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('Workouts').snapshots(),
+        stream: FirebaseFirestore.instance.collection('allUsers').snapshots(),
         builder: (ctx, streamSnapshot) {
           if (streamSnapshot.hasData) {
             final exercises = streamSnapshot.data!.docs;
@@ -58,87 +58,19 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                       children: <Widget>[
                         ListTile(
                           leading: Image.network(
-                            exercises[index].data()["Image"],
+                            exercises[index].data()["ProfilePhoto"],
                           ),
                           title: Text(
                             exercises[index].data()["Name"],
                             style: TextStyle(color: Colors.black),
                           ),
-                          subtitle: Text(exercises[index]["Intensity"]),
-                          onTap: () async {
-                            DocumentSnapshot user = await usersDatabase
-                                .doc(auth.currentUser!.uid)
-                                .get();
-                            print(user.get("Routines"));
-                            String exercise = exercises[index].id;
-                            print(exercises[index].id);
-                            List routines = user.get("Routines");
-
-                            // ignore: use_build_context_synchronously
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text(exercises[index]["Name"]),
-                                  content: Form(
-                                    key: _form,
-                                    child: Column(
-                                      children: [
-                                        TextFormField(
-                                          controller: setsController,
-                                          validator: (value) {
-                                            if (value == null ||
-                                                value.trim().isEmpty) {
-                                              return 'Please enter number of sets';
-                                            }
-                                          },
-                                          decoration:
-                                              InputDecoration(hintText: "Sets"),
-                                        ),
-                                        TextFormField(
-                                          controller: repsController,
-                                          decoration: const InputDecoration(
-                                              hintText: "Reps"),
-                                          onSaved: (value) {},
-                                        ),
-                                        TextFormField(
-                                          controller: weightController,
-                                          decoration:
-                                              InputDecoration(hintText: "lbs"),
-                                          onSaved: (value) {},
-                                        ),
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            String _enteredReps =
-                                                repsController.text;
-                                            String _enteredSets =
-                                                repsController.text;
-                                            String _enteredWeight =
-                                                repsController.text;
-                                            print(repsController.text);
-                                            print(doc_id);
-                                            routines.add(exercise);
-                                            print(routines.toString());
-                                            usersDatabase
-                                                .doc(auth.currentUser!.uid)
-                                                .set({"Routines": routines});
-                                            Navigator.of(context).pop();
-                                            // addRoutineDetails(
-                                            //     _enteredReps,
-                                            //     _enteredSets,
-                                            //     _enteredWeight,
-                                            //     context,
-                                            //     'a');
-                                          },
-                                          child: Text("Submit"),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
+                          subtitle: Text(''),
+                          trailing: IconButton(
+                            icon: Icon(Icons.add),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -271,7 +203,7 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
         .doc(doc_id)
         .update({'Reps': FieldValue.arrayUnion(repsList)})
         .then((value) => Navigator.pop(context,
-            MaterialPageRoute(builder: (context) => AddWorkoutScreen())))
+            MaterialPageRoute(builder: (context) => FriendsAddScreen())))
         .catchError((error) => print("Failed to add reps: $error"));
   }
 

@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
             margin: const EdgeInsets.symmetric(vertical: 10),
             alignment: Alignment.centerLeft,
             child: const Text(
-              "App Name",
+              "GymBuddy",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
