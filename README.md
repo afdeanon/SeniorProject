@@ -16,7 +16,8 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 To SetUp the Project:
- Create a new terminal window
+Create a new terminal window
+
 Clone the repository using the HTTPS Link: https://github.com/afdeanon/SeniorProject.git and navigate to the folder where the code is located
  **Install the flutter SDK from VSCODE**
 You can follow this link as well https://docs.flutter.dev/get-started/install/macos/mobile-ios 
@@ -31,13 +32,20 @@ run "flutter run"
 **In order to configure the iOS simulator to run a flutter application, run these commands**
 1. xcodebuild -downloadPlatform iOS
 2. open -a Simulator
+
 Open Xcode, and go to the Windows tab, then to "Devices and Simulators"
+
 Once a new screen opens, click on "Simulators" and then choose an iOS simulator from the list on the left side
 **In order to run this app, you also need CocoaPods installed**
+
 In your terminal, run the following commands:
 1. sudo gem install cocoapods
+
 Find your file ~/.zshenv, and open it in a text editor.
+
 At the end of your ~/.zshenv file, paste this line:
 export PATH=$HOME/.gem/bin:$PATH
+
 Save the file, and restart all open terminal sessions.
+
 Open your terminal, and run the command : flutter doctor
