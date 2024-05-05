@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:social_workout_app/screens/authScreens/signUpScreen.dart';
+import 'package:social_workout_app/screens/profileScreens/FriendsManage.dart';
 import 'package:social_workout_app/screens/profileScreens/editProfileScreen.dart';
 import 'package:social_workout_app/screens/splashScreen.dart';
 import 'manageFriends.dart';
@@ -120,7 +120,8 @@ class _ProfileState extends State<Profile> {
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const EditProfile1()),
+                    MaterialPageRoute(
+                        builder: (context) => const EditProfile1()),
                   );
                 },
                 child: Container(
@@ -165,7 +166,7 @@ class _ProfileState extends State<Profile> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            const ManageFriendsScreen()), // This assumes EditProfile is the name of the widget you want to navigate to.
+                            const FriendsManageScreen()), // This assumes EditProfile is the name of the widget you want to navigate to.
                   );
                 },
                 child: Container(

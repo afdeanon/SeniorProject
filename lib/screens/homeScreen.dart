@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   List<Widget> get _widgetOptions => [
-        RankingScreen(),
+        // RankingScreen(),
         WorkoutScreen(),
         ProfileScreen(),
       ];
@@ -37,10 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart_outlined),
-            label: "Ranking",
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.bar_chart_outlined),
+          //   label: "Ranking",
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.accessibility),
             label: "Workout",

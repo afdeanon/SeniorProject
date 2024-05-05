@@ -57,8 +57,6 @@ class _AddFriendsState extends State<AddFriends> {
           ),
         ),
         const SizedBox(height: 30),
-
-
         Container(
           width: 332,
           height: 34,
@@ -69,11 +67,13 @@ class _AddFriendsState extends State<AddFriends> {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          child: const Row( // Use Row to hold multiple widgets horizontally
+          child: const Row(
+            // Use Row to hold multiple widgets horizontally
             children: [
               Icon(Icons.search, color: Color(0xFF777777)),
               SizedBox(width: 10), // Space before the TextField
-              Expanded( // Use Expanded to make the TextField take the remaining space
+              Expanded(
+                // Use Expanded to make the TextField take the remaining space
                 child: TextField(
                   decoration: InputDecoration(
                     isDense: true, // Makes the TextField compact

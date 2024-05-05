@@ -12,7 +12,6 @@ class EditProfile1 extends StatefulWidget {
 }
 
 class _EditProfile1ScreenState extends State<EditProfile1> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
