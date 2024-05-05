@@ -15,17 +15,34 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-To SetUp the Project:
+To Set Up the Project:
+
+Prerequisites:
+Have the Flutter SDK installed on your machine: https://docs.flutter.dev/get-started/install/macos/mobile-ios 
+Have Visual Studio Code installed on your machine
+Have Xcode installed on your Mac (from the Apple Store) with the IOS 17.2 package installed for the simulator
+Have Cocoapods installed on your machine using the command 'sudo gem install cocoapods'
 Create a new terminal window
 
 Clone the repository using the HTTPS Link: https://github.com/afdeanon/SeniorProject.git and navigate to the folder where the code is located
- **Install the flutter SDK from VSCODE**
-You can follow this link as well https://docs.flutter.dev/get-started/install/macos/mobile-ios 
-type the command "cd <project-name>"
-run "flutter pub get"
-run "flutter run"
-**Make sure that for IOS development, you have XCODE installed on your computer, and have downloaded the IOS 17.2 package**
-**In order to make sure that you have everything needed, run "flutter doctor" in your terminal**
+
+Open the project folder in Visual Studio Code
+
+Install Flutter and Dart plugins for Visual Studio Code if they are not already installed. They can be found in the Visual Studo Code extensions marketplace
+
+Open a terminal in Visual Studio Code and cd to the project folder: 'cd SeniorProject'
+
+Run the command 'flutter pub get' to get all the dependencies for the project
+Navigate to the IOS directory by using the command 'cd ios'
+Run 'pod install' to install the Cocoapods dependencies for the project
+Navigate back to the root directory of the project by doing 'cd ..'
+Open the IOS simulator by opening Xcode and selecting the IPhone option
+Go back to Visual Studio Vode(do not close the simulator on Xcode), and select 'Run without debugging'
+
+If you encounter any issues: run 'flutter doctor' in order to troubleshoot
+
+Further setup instructions are below if you have not run the Xcode simulator, or installed cocoapods before.
+
 **These following steps will allow you to configure XCODE to run the application**
 1. sudo sh -c 'xcode-select -s /Applications/Xcode.app/Contents/Developer && xcodebuild -runFirstLaunch'
 2. sudo xcodebuild -license
@@ -36,6 +53,7 @@ run "flutter run"
 Open Xcode, and go to the Windows tab, then to "Devices and Simulators"
 
 Once a new screen opens, click on "Simulators" and then choose an iOS simulator from the list on the left side
+
 **In order to run this app, you also need CocoaPods installed**
 
 In your terminal, run the following commands:
@@ -49,3 +67,5 @@ export PATH=$HOME/.gem/bin:$PATH
 Save the file, and restart all open terminal sessions.
 
 Open your terminal, and run the command : flutter doctor
+
+If there are any questions, feel free to email kqtednh@gmail.com/afdeanon@gmail.com/nick.bao2020@gmail.com/soundy0115@gmail.com for further troubleshooting
