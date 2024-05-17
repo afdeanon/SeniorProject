@@ -123,9 +123,41 @@ class _FriendsAddScreenState extends State<FriendsAddScreen> {
                             users[index].data()["name"],
                             style: TextStyle(color: Colors.black),
                           ),
-                          onTap: () async {
-                            Navigator.of(context).pop();
-                          },
+                          subtitle: Text(''),
+                          trailing: IconButton(
+                            icon: Icon(Icons.add),
+                            onPressed: () async {
+                              DocumentSnapshot user = await usersDatabase
+                                  .doc(auth.currentUser!.uid)
+                                  .get();
+                              var userID = users[index].id;
+                              List friends = user.get("friends");
+                              if (!friends.contains(userID)) {
+                                friends.add(userID);
+                                await FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(auth.currentUser!.uid)
+                                    .update({'friends': friends});
+                                Navigator.of(context).pop();
+                              } else {
+                                return showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                          content: Text(
+                                              'User has already been added'),
+                                          actions: <Widget>[
+                                            ElevatedButton(
+                                              child: Text('OKAY'),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ]);
+                                    });
+                              }
+                            },
+                          ),
                         ),
                       ],
                     ),

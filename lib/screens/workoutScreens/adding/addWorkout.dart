@@ -217,24 +217,19 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                                                 repsController.text;
                                             String _enteredWeight =
                                                 repsController.text;
-                                            print(repsController.text);
-                                            // print(doc_id);
-                                            routines.add(exercise);
-                                            print(routines.toString());
+                                            print(doc_id);
                                             usersDatabase
                                                 .doc(auth.currentUser!.uid)
-                                                .collection('Routnes')
-                                                .doc('workoutID')
-                                                .update({
-                                              'workouts': routines.toString()
+                                                .collection('Routines')
+                                                .doc(exercise.toString())
+                                                .set({
+                                              "workoutID": exercise,
+                                              "reps": _enteredReps,
+                                              "sets": _enteredSets,
+                                              "weight": _enteredWeight,
                                             });
+
                                             Navigator.of(context).pop();
-                                            // addRoutineDetails(
-                                            //     _enteredReps,
-                                            //     _enteredSets,
-                                            //     _enteredWeight,
-                                            //     context,
-                                            //     'a');
                                           },
                                           child: Text("Submit"),
                                         )

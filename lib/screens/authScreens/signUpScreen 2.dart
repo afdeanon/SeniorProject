@@ -43,13 +43,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       User? user = await FireAuth.registerUsingEmailPassword(
           email: _enteredEmail, password: _password, name: _enteredName);
       print(user);
-      if (user != null) {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ),
-        );
-      }
       usersDatabase.doc(user!.uid).set({
         'username': "to be done...",
         'name': _enteredName,
@@ -63,6 +56,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           usersDatabase.doc(user.uid).collection('Routines').doc();
       await dummyDoc.set({'dummy': true});
       await dummyDoc.delete();
+      if (user != null) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+        );
+      }
     } on FirebaseAuthException catch (error) {
       print(error.toString());
 
