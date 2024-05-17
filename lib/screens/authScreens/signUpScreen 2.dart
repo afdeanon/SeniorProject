@@ -50,8 +50,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         );
       }
-      usersDatabase.doc(user!.uid).set(
-          {"Routines": [], "Friends": [], "Reps": [], "Lbs": [], "Sets": []});
+      usersDatabase.doc(user!.uid).set({
+        'username': "to be done...",
+        'name': _enteredName,
+        'email': _enteredEmail,
+        'profileImage':
+            'https://firebasestorage.googleapis.com/v0/b/senior-project-eb3b8.appspot.com/o/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg?alt=media&token=c258a441-7518-424f-8086-58d3eb48ff16',
+        'routines': [],
+        'friends': [],
+      });
+      DocumentReference dummyDoc =
+          usersDatabase.doc(user.uid).collection('Routines').doc();
+      await dummyDoc.set({'dummy': true});
+      await dummyDoc.delete();
     } on FirebaseAuthException catch (error) {
       print(error.toString());
 

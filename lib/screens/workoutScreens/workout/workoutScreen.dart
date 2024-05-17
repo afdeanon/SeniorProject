@@ -25,7 +25,50 @@ Future<DocumentSnapshot> doc_id =
 Future<DocumentSnapshot> _getUser(String id) {
   return usersDatabase.doc(auth.currentUser!.uid).get();
 }
+
 // FirebaseFirestore.instance.collection('Workouts').where("__name__", whereIn: routines).snapshots();
+Future<List<Map<String, dynamic>>> fetchRoutinesAndWorkouts(
+    String userId) async {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  CollectionReference routinesRef =
+      firestore.collection('users').doc(userId).collection('Routines');
+
+  QuerySnapshot routinesSnapshot = await routinesRef.get();
+  List<Map<String, dynamic>> combinedData = [];
+
+  for (QueryDocumentSnapshot routineDoc in routinesSnapshot.docs) {
+    String reps = routineDoc['reps'];
+    String sets = routineDoc['sets'];
+    String weights = routineDoc['weight'];
+    String workoutID = routineDoc['workoutID'];
+
+    // Fetch the workout details
+    DocumentSnapshot workoutDoc =
+        await firestore.collection('Workouts').doc(workoutID).get();
+
+    if (workoutDoc.exists) {
+      String workoutName = workoutDoc['Name'];
+      String image = workoutDoc['Image'];
+      String instructions = workoutDoc['Instructions'];
+      String intensity = workoutDoc['Intensity'];
+      String muscleGroup = workoutDoc['Muscle Group'];
+
+      // Combine reps and workout name into a single map
+      combinedData.add({
+        'reps': reps,
+        'sets': sets,
+        'weights': weights,
+        'workoutName': workoutName,
+        'image': image,
+        'instructions': instructions,
+        'intensity': intensity,
+        'muscleGroup': muscleGroup
+      });
+    }
+  }
+
+  return combinedData;
+}
 
 class _WorkoutScreenState extends State<WorkoutScreen> {
   @override
@@ -36,17 +79,179 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
           automaticallyImplyLeading: false,
           title: Text("My Routines"),
         ),
-        body: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('add').snapshots(),
-          builder: (ctx, streamSnapshot) {
-            if (streamSnapshot.hasData && show != false) {
-              final exercises = streamSnapshot.data!.docs;
+        body: FutureBuilder<List<Map<String, dynamic>>>(
+          future: fetchRoutinesAndWorkouts(auth.currentUser!.uid),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.fromLTRB(25, 20, 10, 20),
+                      width: 330,
+                      height: 116,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(width: 2, color: Color(0xFFD4D4D4)),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.add),
+                          SizedBox(width: 50),
+                          Text(
+                            'Add a friend!',
+                            style: TextStyle(
+                              color: Color(0xFF777777),
+                              fontSize: 24,
+                              fontFamily: 'SF Pro',
+                              fontWeight: FontWeight.normal,
+                              height: 0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              List<Map<String, dynamic>> routines = snapshot.data!;
+
               return ListView.builder(
-                itemCount: exercises.length,
+                itemCount: routines.length,
                 itemBuilder: (context, index) {
-                  final DocumentSnapshot documentSnapshot =
-                      streamSnapshot.data!.docs[index];
+                  // return ListTile(
+                  //   title: Text('Reps: ${routines[index]['reps']}'),
+                  //   subtitle:
+                  //       Text('Workout: ${routines[index]['workoutName']}'),
+                  // );
                   return Card(
+                    margin: const EdgeInsets.all(10),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          leading: Image.network(
+                            routines[index]['image'],
+                          ),
+                          title: Text(
+                            routines[index]['workoutName'],
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          subtitle: Text(
+                              'Reps: ${routines[index]['reps']},  Sets: ${routines[index]['reps']},  Weights: ${routines[index]['reps']}'),
+                          onTap: () async {
+                            return showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                      title:
+                                          Text(routines[index]['workoutName']),
+                                      content: Column(
+                                        children: [
+                                          Image.network(
+                                            routines[index]['image'],
+                                          ),
+                                          SizedBox(height: 10),
+                                          Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              'Instructions:',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            routines[index]['instructions'],
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "Muscle Group:  ",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Text(routines[index]
+                                                  ['muscleGroup'])
+                                            ],
+                                          ),
+                                          SizedBox(height: 10),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "Difficulty:  ",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Text(routines[index]['intensity'])
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                          child: Text('OKAY'),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ]);
+                                });
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => AddWorkoutScreen()),
+            );
+          },
+          label: const Text('Create a new Routine'),
+          icon: const Icon(Icons.add),
+        ));
+  }
+
+  Future<DocumentSnapshot> _getUser(String id) {
+    return usersDatabase.doc(auth.currentUser!.uid).get();
+  }
+
+  /**
+   * Container(
+width: 393,
+height: 237,
+decoration: BoxDecoration(color: Color(0xFF558CE0)),
+)
+   */
+}
+
+/**
+ * return Card(
                     margin: const EdgeInsets.all(10),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -64,10 +269,10 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                             DocumentSnapshot user = await usersDatabase
                                 .doc(auth.currentUser!.uid)
                                 .get();
-                            print(user.get("Routines"));
+                            print(user.get("routines"));
                             String exercise = exercises[index].id;
                             print(exercises[index].id);
-                            List routines = user.get("Routines");
+                            List routines = user.get("routines");
                             // ignore: use_build_context_synchronously
                             showDialog(
                                 context: context,
@@ -105,74 +310,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                       ],
                     ),
                   );
-                },
-              );
-            }
-            return Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.fromLTRB(25, 20, 10, 20),
-                    width: 330,
-                    height: 116,
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 2, color: Color(0xFFD4D4D4)),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(Icons.add),
-                        const SizedBox(width: 50),
-                        Text(
-                          'Start a Workout!',
-                          style: TextStyle(
-                            color: Color(0xFF777777),
-                            fontSize: 24,
-                            fontFamily: 'SF Pro',
-                            fontWeight: FontWeight.normal,
-                            height: 0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => AddWorkoutScreen()),
-            );
-          },
-          label: const Text('Create a new Routine'),
-          icon: const Icon(Icons.add),
-        ));
-  }
-
-  Future<DocumentSnapshot> _getUser(String id) {
-    return usersDatabase.doc(auth.currentUser!.uid).get();
-  }
-
-  /**
-   * Container(
-width: 393,
-height: 237,
-decoration: BoxDecoration(color: Color(0xFF558CE0)),
-)
-   */
-}
-
+ */
 class FavoritesList extends StatelessWidget {
   var _favs;
   late Stream<QuerySnapshot<Map<String, dynamic>>> _favorites;

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +13,12 @@ class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
+
+final auth = FirebaseAuth.instance;
+final user = auth.currentUser!;
+final userId = user.uid;
+final userData =
+    FirebaseFirestore.instance.collection('users').doc(user.uid).get();
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
@@ -35,6 +42,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String _name = auth.currentUser!.displayName ?? "No Name";
   void _logout() async {
     try {
       await FirebaseAuth.instance.signOut();
@@ -75,39 +83,21 @@ class _ProfileState extends State<Profile> {
                   shape: OvalBorder(),
                 ),
               ),
-              const SizedBox(width: 24),
-              const Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Joseph',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 32, // Reduced font size for better fitting
-                        fontFamily: 'SF Pro',
-                        fontWeight: FontWeight.w500,
-                        height:
-                            1.2, // Proper line height to prevent clipping and improve readability
-                      ),
-                    ),
-                    Text(
-                      'Clark',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 24, // Reduced font size for better fitting
-                        fontFamily: 'SF Pro',
-                        fontWeight: FontWeight.w500,
-                        height:
-                            1.2, // Proper line height to prevent clipping and improve readability
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Text(
+          _name,
+          style: TextStyle(
+            color: Color.fromARGB(255, 58, 123, 220),
+            fontSize: 32, // Reduced font size for better fitting
+            fontFamily: 'SF Pro',
+            fontWeight: FontWeight.w500,
+            height:
+                1.2, // Proper line height to prevent clipping and improve readability
           ),
         ),
         const SizedBox(height: 60),
