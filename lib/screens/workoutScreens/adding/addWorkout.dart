@@ -69,10 +69,10 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                             DocumentSnapshot user = await usersDatabase
                                 .doc(auth.currentUser!.uid)
                                 .get();
-                            print(user.get("Routines"));
+                            print(user.get("routines"));
                             String exercise = exercises[index].id;
                             print(exercises[index].id);
-                            List routines = user.get("Routines");
+                            List routines = user.get("routines");
 
                             // ignore: use_build_context_synchronously
                             showDialog(
@@ -115,13 +115,18 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                                                 repsController.text;
                                             String _enteredWeight =
                                                 repsController.text;
-                                            print(repsController.text);
                                             print(doc_id);
-                                            routines.add(exercise);
-                                            print(routines.toString());
                                             usersDatabase
                                                 .doc(auth.currentUser!.uid)
-                                                .set({"Routines": routines});
+                                                .collection('Routines')
+                                                .doc(exercise.toString())
+                                                .set({
+                                              "workoutID": exercise,
+                                              "reps": _enteredReps,
+                                              "sets": _enteredSets,
+                                              "weight": _enteredWeight,
+                                            });
+
                                             Navigator.of(context).pop();
                                             // addRoutineDetails(
                                             //     _enteredReps,
@@ -166,10 +171,10 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                             DocumentSnapshot user = await usersDatabase
                                 .doc(auth.currentUser!.uid)
                                 .get();
-                            print(user.get("Routines"));
+                            print(user.get("routines"));
                             String exercise = exercises[index].id;
                             print(exercises[index].id);
-                            List routines = user.get("Routines");
+                            List routines = user.get("routines");
 
                             // ignore: use_build_context_synchronously
                             showDialog(
@@ -213,12 +218,16 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                                             String _enteredWeight =
                                                 repsController.text;
                                             print(repsController.text);
-                                            print(doc_id);
+                                            // print(doc_id);
                                             routines.add(exercise);
                                             print(routines.toString());
                                             usersDatabase
                                                 .doc(auth.currentUser!.uid)
-                                                .set({"Routines": routines});
+                                                .collection('Routnes')
+                                                .doc('workoutID')
+                                                .update({
+                                              'workouts': routines.toString()
+                                            });
                                             Navigator.of(context).pop();
                                             // addRoutineDetails(
                                             //     _enteredReps,
