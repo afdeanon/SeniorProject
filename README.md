@@ -1,6 +1,11 @@
 GITHUB LINK TO THE PROJECT: https://github.com/afdeanon/SeniorProject
 # social_workout_app
 
+
+
+https://github.com/user-attachments/assets/8abfabb7-e6cb-4b51-9bff-754eb9859480
+
+
 A new Flutter project.
 
 ## Getting Started
